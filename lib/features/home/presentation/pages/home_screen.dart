@@ -4,9 +4,9 @@ import 'dart:typed_data';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_video_call_agora/features/audio_call/audio_call.dart';
-import 'package:my_video_call_agora/features/group_video_call/multiple_video_call.dart';
-import 'package:my_video_call_agora/features/single_video_call/video_call.dart';
+import 'package:my_video_call_agora/features/audio_call/presentation/pages/audio_call.dart';
+import 'package:my_video_call_agora/features/group_video_call/presentation/pages/multiple_video_call.dart';
+import 'package:my_video_call_agora/features/single_video_call/presentation/pages/video_call.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_theme.dart';

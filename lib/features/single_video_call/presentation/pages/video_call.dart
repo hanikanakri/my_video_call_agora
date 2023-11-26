@@ -5,8 +5,8 @@ import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:my_video_call_agora/core/app_brain.dart';
-import 'package:my_video_call_agora/features/single_video_call/single_call_button_controller.dart';
 import 'package:permission_handler/permission_handler.dart';
+import '../wigets/single_call_button_controller.dart';
 
 class VideoCallScreen extends StatefulWidget {
   const VideoCallScreen({
@@ -100,21 +100,6 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
               _engine.muteRemoteAudioStream(uid: remoteUid, mute: true);
               _engine.muteRemoteVideoStream(uid: remoteUid, mute: true);
             }
-
-            /*if (widget.isSingleVideoCall == false) {
-              _remoteUid = remoteUid;
-              if (_participantCount < 6) {
-                setState(() {
-                  _participantCount++;
-                });
-              } else {
-                // You can choose to reject additional participants here
-                _engine.muteRemoteAudioStream(uid: remoteUid, mute: true);
-                _engine.muteRemoteVideoStream(uid: remoteUid, mute: true);
-              }
-            } else {
-
-            }*/
           });
         },
         onUserOffline: (RtcConnection connection, int remoteUid,

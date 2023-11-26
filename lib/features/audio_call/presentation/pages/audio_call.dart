@@ -97,23 +97,6 @@ class _AudioCallScreenState extends State<AudioCallScreen> {
           Center(
             child: _remoteVideo(),
           ),
-          /*Align(
-            alignment: Alignment.topLeft,
-            child: SizedBox(
-              width: 100,
-              height: 150,
-              child: Center(
-                child: _localUserJoined
-                    ? AgoraVideoView(
-                        controller: VideoViewController(
-                          rtcEngine: _engine,
-                          canvas: const VideoCanvas(uid: 0),
-                        ),
-                      )
-                    : const CircularProgressIndicator(),
-              ),
-            ),
-          ),*/
           Align(
             alignment: Alignment.bottomRight,
             child: Padding(

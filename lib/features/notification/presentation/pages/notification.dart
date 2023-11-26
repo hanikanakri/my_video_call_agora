@@ -3,7 +3,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fcm/flutter_fcm.dart';
 import 'package:my_video_call_agora/core/firebase_options.dart';
-import 'package:my_video_call_agora/features/notification/sendNotificationConsole.dart';
+import 'package:my_video_call_agora/features/notification/repository/sendNotificationConsole.dart';
 import 'package:my_video_call_agora/features/home/presentation/pages/home_screen.dart';
 
 class AwesomeNotificationSend {

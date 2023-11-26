@@ -14,7 +14,7 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'package:flutter/material.dart';
 import 'package:my_video_call_agora/core/utils/shared_storage.dart';
 import 'package:my_video_call_agora/features/auth/presentation/pages/register_page.dart';
-import 'package:my_video_call_agora/features/notification/notification.dart';
+import 'package:my_video_call_agora/features/notification/presentation/pages/notification.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'core/bloc_observer.dart';

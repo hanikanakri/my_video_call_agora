@@ -1,0 +1,18 @@
+{
+  "enter_the_code_you_get_from_sms_or_email": "أدخل كود التحقق الذي تلقيته من رسالة نصية أو أيميل",
+  "Welcome_to_hani_app": "مرحباً بك في تطبيق هاني",
+  "inter_your_password": "قم بإدخال كلمة المرور الخاصة بك",
+  "inter_your_confirm_password": "قم بإدخال تأكيد كلمة المرور",
+  "enter_your_email": "قم بإدخال إيميلك",
+  "Register_at_hani_app": "سجل في تطبيق هاني",
+  "enter_your_number": "قم بإدخال رقمك",
+  "continue": "متابعة",
+  "inter_your_full_name": "قم بإدخال إسمك الكامل",
+  "inter_your_other_device_token": "قم بإدخال رمز الجهاز الآخر",
+  "full_name": "الآسم الكامل",
+  "are_you_sure_of_your_info?": "هل انت متأكد من معلوماتك ؟",
+  "email": "الإيميل",
+  "token": "رمز الجهاز",
+  "phone_number": "رقم الهاتف",
+  "complete_your_information": "قم بإكمال معلواتك"
+}

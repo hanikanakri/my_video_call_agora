@@ -8,7 +8,4 @@ class AppSettings {
   static bool isDebug = false;
   static get  arabicFont => 'arabic_font';
   static  get  englishFont => 'english_font';
-
-
-
 }

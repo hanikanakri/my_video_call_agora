@@ -21,6 +21,7 @@ import 'core/bloc_observer.dart';
 import 'core/constants/app_constants.dart';
 import 'core/constants/app_settings.dart';
 import 'core/widgets/easy_loading.dart';
+import 'features/auth/data/location_permission.dart';
 import 'features/home/presentation/pages/home_screen.dart';
 
 Future<void> backgroundHandler(RemoteMessage message) async {
@@ -68,16 +69,22 @@ Future<void> main() async {
 
   SharedStorage.init();
 
+  //await PermissionLocation.determinePosition();
+
   AwesomeNotificationSend.createNotification();
 
   Permission.systemAlertWindow;
   await Permission.notification.request();
+
+  await LocationProvider.determinePosition();
 
   AwesomeNotificationSend.notificationInitialize();
 
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
 
   Bloc.observer = MyBlocObserver();
+
+
 
   Messaging.initFCM();
   timeago.setLocaleMessages('ar', timeago.ArMessages());

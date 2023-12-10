@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:regexpattern/regexpattern.dart';
 
+
 class Validators{
 
 

@@ -1,8 +1,7 @@
-
 import 'package:get_storage/get_storage.dart';
 
 class SharedStorage {
-  static String storageName = 'furniture_moving_container';
+  static String storageName = 'my_video_call_agora';
   static GetStorage box = GetStorage(storageName);
   static String tokenKey = 'userToken';
   static String userIdKey = 'userId';
@@ -11,7 +10,7 @@ class SharedStorage {
   static String isNewUser = "isNewUser";
   static String isSeeIntroCard = "false";
   static String draftCounter = "draftCounter";
-  static String? userType= "userType";
+  static String? userType = "userType";
 
   static init() async {
     await GetStorage.init(storageName);
@@ -72,8 +71,9 @@ class SharedStorage {
   static writeUserId(value) {
     box.write(userIdKey, value);
   }
+
   static getDraftCounter() {
-    return box.read(draftCounter)??0;
+    return box.read(draftCounter) ?? 0;
   }
 
   static writeDraftCounter(value) {

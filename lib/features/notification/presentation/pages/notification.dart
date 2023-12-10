@@ -157,10 +157,6 @@ class AwesomeNotificationSend {
 class Messaging {
   static String? token;
 
-/*
-='eDDi6wItSeqOiHy7M2tZ0T:APA91bFB9EziKwNbsfmh4F1Uz3aCs_6kLabGj9A-DsNgNEl1JGybYMXcaRWmOgg0prbMejA7L2eYlGBAB6nNwLxT9wbRNDc9aaNiSC68ITwm-rGqvS06RltKqwO5o6WHyAw_qB6IsQ_r';
-*/
-
   static Future<void> onNotificationReceived(RemoteMessage message) async {
     print('Handling a message ${message.messageId}');
   }

@@ -1,9 +1,11 @@
-// ignore_for_file: must_be_immutable
 import 'dart:typed_data';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:my_video_call_agora/core/animations/navigation_route_animation/navigation_route_animation.dart';
+import 'package:my_video_call_agora/core/database/db/sqflite.dart';
 import 'package:my_video_call_agora/features/audio_call/presentation/pages/audio_call.dart';
 import 'package:my_video_call_agora/features/group_video_call/presentation/pages/multiple_video_call.dart';
 import 'package:my_video_call_agora/features/single_video_call/presentation/pages/video_call.dart';
@@ -12,8 +14,8 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_theme.dart';
 import '../../../../core/database/image_db/image_db.dart';
 import '../../../../core/utils/navigation.dart';
-import 'package:my_video_call_agora/core/database/db/sqflite.dart';
 import '../widgets/general_home_scaffold.dart';
+import 'maps.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -29,11 +31,12 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Map> snapshotData = [];
   bool isLoading = true;
 
-String? imageURL;
+  String? imageURL;
 
-  _getBytes(imageURL)async{
-    final ByteData data =await NetworkAssetBundle(Uri.parse(imageURL)).load(imageURL);
-    _types =data.buffer.asInt8List();
+  _getBytes(imageURL) async {
+    final ByteData data =
+        await NetworkAssetBundle(Uri.parse(imageURL)).load(imageURL);
+    _types = data.buffer.asInt8List();
   }
 
   @override
@@ -44,6 +47,9 @@ String? imageURL;
     _fetchData();
     _getBytes(imageURL);
   }
+
+  bool location =true;
+
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +94,7 @@ String? imageURL;
                           Navigation.push(context, const VideoCallScreen());
                         },
                         icon: Icons.video_call,
-                        name: 'single_video_call',
+                        name: '',
                       ),
                       MakeCall(
                         onPressed: () {
@@ -98,7 +104,7 @@ String? imageURL;
                           );
                         },
                         icon: Icons.video_call,
-                        name: 'group_video_call',
+                        name: '',
                       ),
                       MakeCall(
                         onPressed: () {
@@ -108,7 +114,17 @@ String? imageURL;
                           );
                         },
                         icon: Icons.phone,
-                        name: 'voice_call',
+                        name: '',
+                      ),
+                      MakeCall(
+                        onPressed: () {
+                          AnimationNavigation.slidePush(
+                            context,
+                            const GoogleMaps(),
+                          );
+                        },
+                        icon: Icons.map_outlined,
+                        name: '',
                       ),
                     ],
                   ),
@@ -117,9 +133,10 @@ String? imageURL;
             ),
     );
   }
+
   Future readData() async {
     List<Map> response =
-    await sqfliteDataBase.readDatabase("SELECT * FROM tasks");
+        await sqfliteDataBase.readDatabase("SELECT * FROM tasks");
 
     if (mounted) {
       setState(() {
@@ -135,15 +152,14 @@ String? imageURL;
       snapshotData = response;
     });
   }
-
 }
 
 class MakeCall extends StatelessWidget {
-  String? name;
-  IconData? icon;
-  VoidCallback? onPressed;
+  final String? name;
+  final IconData? icon;
+  final VoidCallback? onPressed;
 
-  MakeCall({
+  const MakeCall({
     super.key,
     this.name,
     this.icon,
@@ -159,12 +175,10 @@ class MakeCall extends StatelessWidget {
           CircleAvatar(
             backgroundColor: Colors.red,
             radius: 30.0,
-            child: Expanded(
-              child: Icon(
-                icon,
-                color: AppColors.teal,
-                size: 30,
-              ),
+            child: Icon(
+              icon,
+              color: AppColors.teal,
+              size: 30,
             ),
           ),
           const SizedBox(
@@ -180,5 +194,4 @@ class MakeCall extends StatelessWidget {
       ),
     );
   }
-
 }

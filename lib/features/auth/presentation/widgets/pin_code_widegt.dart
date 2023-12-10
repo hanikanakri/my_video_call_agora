@@ -37,7 +37,7 @@ class _PinCodeState extends State<PinCode> {
       textDirection: TextDirection.ltr,
       child: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: 25.0,
+          horizontal: 0.0,
           vertical: 25,
         ),
         child: PinCodeTextField(

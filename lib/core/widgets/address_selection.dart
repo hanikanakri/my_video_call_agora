@@ -6,6 +6,7 @@ import 'package:geocoding/geocoding.dart';
 // import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:easy_localization/easy_localization.dart';
+import '../constants/Keys.dart';
 import '../constants/app_colors.dart';
 import '../constants/app_styles.dart';
 import '../utils/navigation.dart';
@@ -32,7 +33,7 @@ class AddressSelection extends StatefulWidget {
 class _AddressSelectionState extends State<AddressSelection> {
   LatLng? selectedLocation;
   final GoogleMapsPlaces _places =
-      GoogleMapsPlaces(apiKey: 'AIzaSyDySfX1lMgwJqgptq44BrdwEAuUOsGj_jQ');
+      GoogleMapsPlaces(apiKey: Keys.mapKey,);
   final TextEditingController controller = TextEditingController();
   GoogleMapController? googleMapController;
 

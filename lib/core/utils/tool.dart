@@ -1,15 +1,28 @@
 import 'dart:io';
 
+import 'package:clipboard/clipboard.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../constants/app_colors.dart';
 import '../widgets/dialog/util_dialog.dart';
 import '../widgets/upload_image_widget.dart';
 
 class Tool {
+  static Future autoCopy(String copyText)async{
+    FlutterClipboard.copy(copyText).then(( value ) =>
+        print(copyText));
+  }
+
+  static Future<String> autoPast()async{
+    String pastText = await FlutterClipboard.paste();
+   return pastText;
+  }
+
+
+
+
   static void displayModalBottomSheet({
     context,
     ValueChanged<UploadImageModel?>? onSuccess,
@@ -42,7 +55,7 @@ class Tool {
 
       // Step #3: Crop earlier selected image
 
-      await cropSelectedImage(pickedFile.path).then((croppedFile) {
+      await cropSelectedImage(pickedFile.path,context).then((croppedFile) {
         // Step #4: Check if we actually cropped an image. Otherwise -> stop;
         if (croppedFile == null) return;
 
@@ -60,22 +73,32 @@ class Tool {
     });
   }
 
-  static Future<File?> cropSelectedImage(String filePath) async {
-    return await ImageCropper().cropImage(
+  static Future<CroppedFile?> cropSelectedImage(String filePath,BuildContext context) async {
+    return  await ImageCropper().cropImage(
       sourcePath: filePath,
-      // aspectRatio: const CropAspectRatio(ratioX: 1.0, ratioY: 1.0),
-      androidUiSettings: AndroidUiSettings(
-          toolbarTitle: 'edit_photo'.tr(),
-          toolbarColor: AppColors.primaryColor,
-          toolbarWidgetColor: Colors.white,
-          initAspectRatio: CropAspectRatioPreset.original),
-      iosUiSettings: IOSUiSettings(
-        title: 'edit_photo'.tr(),
-        aspectRatioLockEnabled: true,
-        minimumAspectRatio: 1.0,
-        aspectRatioPickerButtonHidden: true,
-      ),
+      aspectRatioPresets: [
+        CropAspectRatioPreset.square,
+        CropAspectRatioPreset.ratio3x2,
+        CropAspectRatioPreset.original,
+        CropAspectRatioPreset.ratio4x3,
+        CropAspectRatioPreset.ratio16x9
+      ],
+      uiSettings: [
+        AndroidUiSettings(
+            toolbarTitle: 'Cropper',
+            toolbarColor: Colors.deepOrange,
+            toolbarWidgetColor: Colors.white,
+            initAspectRatio: CropAspectRatioPreset.original,
+            lockAspectRatio: false),
+        IOSUiSettings(
+          title: 'Cropper',
+        ),
+        WebUiSettings(
+          context: context,
+        ),
+      ],
     );
+
   }
 
   static bool isValidImage(XFile? image, BuildContext context) {

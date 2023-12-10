@@ -20,6 +20,7 @@ class GeneralAuthScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      resizeToAvoidBottomInset:false,
       appBar: AppBar(
         backgroundColor: AppColors.transparent,
         leading: Visibility(

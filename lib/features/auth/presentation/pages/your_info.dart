@@ -2,6 +2,7 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:my_video_call_agora/core/animations/navigation_route_animation/navigation_route_animation.dart';
 import 'package:my_video_call_agora/core/database/image_db/image_db.dart';
 
 import '../../../../core/constants/app_theme.dart';
@@ -106,7 +107,7 @@ class _YourInfoState extends State<YourInfo> {
     VALUES ("${widget.registerInfo!.fullName}", "${widget.registerInfo!.emailAddress}", "${widget.registerInfo!.phoneNumber}")
     ''');
     if (response > 0) {
-      Navigation.pushAndRemoveUntil(context, const HomeScreen());
+      AnimationNavigation.rotatePushAndRemoveUntil(context, const HomeScreen());
       SharedStorage.writeToken(widget.registerInfo!.token);
     }
     print(response);

@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="my_video_call_agora" type="FlutterTestConfigType" factoryName="Flutter Test" singleton="false">
+    <option name="testDir" value="C:\Users\adnan_kanakri\Desktop\android_studio_projects\my_video_call_agora" />
+    <option name="useRegexp" value="false" />
+    <option name="additionalArgs" value="" />
+    <method v="2" />
+  </configuration>
+</component>

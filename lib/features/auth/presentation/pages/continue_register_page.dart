@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:my_video_call_agora/core/constants/app_theme.dart';
 import 'package:my_video_call_agora/core/utils/validators.dart';
@@ -9,6 +10,7 @@ import 'package:my_video_call_agora/features/auth/presentation/pages/your_info.d
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/utils/navigation.dart';
+import '../../../../core/utils/tool.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../data/register_info.dart';
 import '../widgets/general_auth_border.dart';
@@ -54,6 +56,8 @@ class _ContinueRegisterPageState extends State<ContinueRegisterPage> {
     confirmPasswordFocusNode = FocusNode();
     tokenFocusNode = FocusNode();
   }
+
+  String? token;
 
   @override
   Widget build(BuildContext context) {
@@ -123,17 +127,52 @@ class _ContinueRegisterPageState extends State<ContinueRegisterPage> {
                         context,
                       ),
                     ),
-                    CustomTextField(
-                      textInputAction: TextInputAction.done,
-                      focusNode: tokenFocusNode,
-                      onEditingComplete: () =>
-                          FocusScope.of(context).nextFocus(),
-                      hintText: 'inter_your_other_device_token',
-                      controller: tokenController,
-                      validator: (value) => Validator.emptyValue(
-                        tokenController.text,
-                        context,
-                      ),
+                    Row(
+
+                      children: [
+                        Expanded(
+                          flex: 8,
+                          child: CustomTextField(
+                            textInputAction: TextInputAction.done,
+                            focusNode: tokenFocusNode,
+                            onEditingComplete: () =>
+                                FocusScope.of(context).nextFocus(),
+                            hintText: 'inter_your_other_device_token',
+                            controller: tokenController,
+                            validator: (value) => Validator.emptyValue(
+                              tokenController.text,
+                              context,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 5,),
+                        Expanded(
+                          child: CircleAvatar(
+                            backgroundColor: AppColors.white,
+                            child: IconButton(
+                              onPressed: () async {
+                                String? token =
+                                    await FirebaseMessaging.instance.getToken();
+                                Tool.autoCopy(token!);
+                              },
+                              icon:  Icon(
+                                Icons.copy,
+                                color: AppColors.grey,
+                              ),
+                            ),
+                          ),
+                        ),
+                        /*Expanded(
+                            child: IconButton(
+                          onPressed: () async {
+                            tokenController.text = await Tool.autoPast();
+                          },
+                          icon: const Icon(
+                            Icons.paste,
+                            color: AppColors.white,
+                          ),
+                        )),*/
+                      ],
                     ),
                   ].expand(
                     (element) => [

@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:flutter/material.dart';
 

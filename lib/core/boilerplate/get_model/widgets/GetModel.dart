@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '/core/widgets/errors/connection_error_widget.dart';
 import '../../../animations/fade_animation.dart';
 import '../../../widgets/loading.dart';
-import '/core/widgets/errors/connection_error_widget.dart';
 import '../cubits/get_model_cubit.dart';
 
 typedef CreatedCallback = void Function(GetModelCubit cubit);
@@ -70,13 +70,14 @@ class _GetModelState<Model> extends State<GetModel<Model>> {
               },
             );
           } else
-            return Container();
+            return const SizedBox();
         }
       },
       listener: (context, state) {
         if (state is Error) {
           // ScaffoldMessenger.of(context).showSnackBar(snackBar(state.message));
-        } else if (state is GetModelSuccessfully) if (widget.onSuccess != null) {
+        } else if (state is GetModelSuccessfully) if (widget.onSuccess !=
+            null) {
           widget.onSuccess!(state.model);
         }
       },

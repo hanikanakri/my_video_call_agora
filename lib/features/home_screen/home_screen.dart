@@ -1,9 +1,9 @@
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:my_video_call_agora/features/notification/sendNotificationConsole.dart';
+import 'package:my_video_call_agora/features/notification/repository/sendNotificationConsole.dart';
 
-import '../notification/notification.dart';
+import '../notification/presentation/pages/notification.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

@@ -1,4 +1,6 @@
 {
+  "app_name": "Hani APP",
+  "hani_app": "Hani APP",
   "enter_the_code_you_get_from_sms_or_email": "Enter the code you get from sms or email",
   "Welcome_to_hani_app": "Welcome to hani app",
   "inter_your_password": "Inter your password",
@@ -8,7 +10,7 @@
   "enter_your_number": "Inter your number",
   "inter_your_full_name": "Inter your full name",
   "are_you_sure_of_your_info?": "are you sure of your info ??",
-  "Register_at_hani_app?": "Register at hani app",
+  "Register_at_hani_app": "Register at hani app",
   "continue?": "Continue",
   "full_name": "Full name",
   "email": "Email",

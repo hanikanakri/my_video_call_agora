@@ -3,7 +3,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fcm/flutter_fcm.dart';
 import 'package:my_video_call_agora/core/firebase_options.dart';
-import 'package:my_video_call_agora/features/notification/sendNotificationConsole.dart';
+import 'package:my_video_call_agora/features/notification/repository/sendNotificationConsole.dart';
 import 'package:my_video_call_agora/features/home/presentation/pages/home_screen.dart';
 
 class AwesomeNotificationSend {
@@ -156,10 +156,6 @@ class AwesomeNotificationSend {
 
 class Messaging {
   static String? token;
-
-/*
-='eDDi6wItSeqOiHy7M2tZ0T:APA91bFB9EziKwNbsfmh4F1Uz3aCs_6kLabGj9A-DsNgNEl1JGybYMXcaRWmOgg0prbMejA7L2eYlGBAB6nNwLxT9wbRNDc9aaNiSC68ITwm-rGqvS06RltKqwO5o6WHyAw_qB6IsQ_r';
-*/
 
   static Future<void> onNotificationReceived(RemoteMessage message) async {
     print('Handling a message ${message.messageId}');

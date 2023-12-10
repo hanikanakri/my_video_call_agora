@@ -18,7 +18,6 @@ class _MultipleVideoCallState extends State<MultipleVideoCall> {
       tempToken: AgoraManger.token,
       uid: 0
     ),
-
     agoraChannelData: AgoraChannelData(),
   );
 

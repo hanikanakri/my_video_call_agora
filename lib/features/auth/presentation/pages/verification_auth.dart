@@ -1,5 +1,3 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:my_video_call_agora/core/widgets/buttons/main_elevated_button.dart';
@@ -14,16 +12,22 @@ import '../widgets/general_auth_border.dart';
 import '../widgets/general_auth_scaffold.dart';
 import 'continue_register_page.dart';
 
-class VerificationAuth extends StatelessWidget {
-  VerificationAuth({
+class VerificationAuth extends StatefulWidget {
+  const VerificationAuth({
     super.key,
     this.registerInfo,
   });
 
-  TextEditingController? verificationController = TextEditingController();
-  RegisterInfo? registerInfo;
-  GlobalKey<FormState> verificationKey=GlobalKey<FormState>();
+  final RegisterInfo? registerInfo;
 
+  @override
+  State<VerificationAuth> createState() => _VerificationAuthState();
+}
+
+class _VerificationAuthState extends State<VerificationAuth> {
+  final TextEditingController? verificationController = TextEditingController();
+
+  GlobalKey<FormState> verificationKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return GeneralAuthScaffold(
@@ -35,6 +39,7 @@ class VerificationAuth extends StatelessWidget {
             GeneralAuthBorder(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     "enter_the_code_you_get_from_sms_or_email".tr(),
@@ -44,20 +49,23 @@ class VerificationAuth extends StatelessWidget {
                   ),
                   PinCode(
                     verificationController: verificationController,
-                    validator: (value) => Validator.emptyValue(verificationController!.text, context)
+                    validator: (value) => Validator.emptyValue(
+                      verificationController!.text,
+                      context,
+                    ),
                   ),
                 ],
               ),
             ),
             MainElevatedButton(
               onPressed: () {
-                if(verificationKey.currentState!.validate()) {
-                  registerInfo?.verificationCode =
-                    int.tryParse(verificationController!.text);
+                if (verificationKey.currentState!.validate()) {
+                  widget.registerInfo?.verificationCode =
+                      int.tryParse(verificationController!.text);
                   Navigation.pushReplacement(
                     context,
                     ContinueRegisterPage(
-                      registerInfo: registerInfo,
+                      registerInfo: widget.registerInfo,
                     ),
                   );
                 }

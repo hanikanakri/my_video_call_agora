@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -11,15 +11,18 @@ import '../../../../core/constants/app_theme.dart';
 import '../../../auth/presentation/widgets/general_background_image.dart';
 
 class GeneralHomeScaffold extends StatelessWidget {
-  GeneralHomeScaffold({super.key, this.body,});
+  const GeneralHomeScaffold({super.key, this.body,this.floatingActionButton,});
 
-  Widget? body;
+  final Widget? body;
+  final Widget? floatingActionButton;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       extendBodyBehindAppBar: true,
-      backgroundColor: AppColors.transparent,
+      resizeToAvoidBottomInset: false,
+      backgroundColor: AppColors.black,
       appBar: AppBar(
         backgroundColor: AppColors.transparent,
         title:  Text("hani_app".tr(),style: AppTheme.headline.copyWith(color: AppColors.white,fontSize: 18),),
@@ -33,10 +36,11 @@ class GeneralHomeScaffold extends StatelessWidget {
       ),
       body:Stack(
         children: [
-          GeneralBackgroundImage(),
+          //GeneralBackgroundImage(),
           body ?? const SizedBox(),
         ],
       ),
+      floatingActionButton: floatingActionButton ,
     );
   }
 }

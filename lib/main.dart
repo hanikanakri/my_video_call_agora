@@ -14,13 +14,14 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'package:flutter/material.dart';
 import 'package:my_video_call_agora/core/utils/shared_storage.dart';
 import 'package:my_video_call_agora/features/auth/presentation/pages/register_page.dart';
-import 'package:my_video_call_agora/features/notification/notification.dart';
+import 'package:my_video_call_agora/features/notification/presentation/pages/notification.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'core/bloc_observer.dart';
 import 'core/constants/app_constants.dart';
 import 'core/constants/app_settings.dart';
 import 'core/widgets/easy_loading.dart';
+import 'features/auth/data/location_permission.dart';
 import 'features/home/presentation/pages/home_screen.dart';
 
 Future<void> backgroundHandler(RemoteMessage message) async {
@@ -68,16 +69,22 @@ Future<void> main() async {
 
   SharedStorage.init();
 
+  //await PermissionLocation.determinePosition();
+
   AwesomeNotificationSend.createNotification();
 
   Permission.systemAlertWindow;
   await Permission.notification.request();
+
+  await LocationProvider.determinePosition();
 
   AwesomeNotificationSend.notificationInitialize();
 
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
 
   Bloc.observer = MyBlocObserver();
+
+
 
   Messaging.initFCM();
   timeago.setLocaleMessages('ar', timeago.ArMessages());

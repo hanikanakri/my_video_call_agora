@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:my_video_call_agora/core/animations/navigation_route_animation/navigation_route_animation.dart';
 import 'package:my_video_call_agora/core/widgets/custom_text_field.dart';
 import 'package:my_video_call_agora/features/auth/presentation/pages/verification_auth.dart';
 import 'package:my_video_call_agora/features/auth/presentation/widgets/general_auth_scaffold.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_theme.dart';
-import '../../../../core/utils/navigation.dart';
 import '../../../../core/utils/validators.dart';
 import '../../../../core/widgets/buttons/main_elevated_button.dart';
 import '../../data/register_info.dart';
@@ -17,9 +17,9 @@ class Register extends StatelessWidget {
     super.key,
   });
 
-  RegisterInfo? registerInfo = RegisterInfo();
-  TextEditingController emailController = TextEditingController();
-  GlobalKey<FormState> registerKey = GlobalKey<FormState>();
+  final RegisterInfo? registerInfo = RegisterInfo();
+  final TextEditingController emailController = TextEditingController();
+  final GlobalKey<FormState> registerKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class Register extends StatelessWidget {
                   if (registerKey.currentState!.validate()) {
                     registerInfo?.emailAddress = emailController.text;
                     print(registerInfo!.emailAddress);
-                    Navigation.push(
+                    AnimationNavigation.slidePush(
                       context,
                       VerificationAuth(
                         registerInfo: registerInfo,

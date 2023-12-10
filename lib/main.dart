@@ -147,18 +147,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   _getNextPage() {
-
-    /*      return  ImageStorageScreen();
-  }
-    // return PaymentPage();
-    // return RequestSuccessPage();
-    //  return PaymentPage();
-  if (SharedStorage.hasToken()) {
-      return GeneralHomePage();
-    } else {
-      return Register();
-    }
-  }*/
   if (SharedStorage.hasToken()) {
       return const HomeScreen();
     } else {
@@ -167,77 +155,3 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-/*
-import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
-import 'package:my_video_call_agora/home_screen/home_screen.dart';
-import 'package:my_video_call_agora/notification/notification.dart';
-
-import 'core/firebase_options.dart';
-
-Future<void> backgroundHandler(RemoteMessage message) async {
-  String? title = message.notification!.title;
-  String? body = message.notification!.body;
-  AwesomeNotifications().createNotification(
-    content: NotificationContent(
-      id: 123456789,
-      channelKey: 'call_channel',
-      color: Colors.white,
-      title: title,
-      body: body,
-      category: NotificationCategory.Call,
-      timeoutAfter: const Duration(minutes: 1),
-      wakeUpScreen: true,
-      fullScreenIntent: true,
-      autoDismissible: false,
-      backgroundColor: Colors.orange,
-    ),
-    actionButtons: [
-      NotificationActionButton(
-        key: 'ACCEPT',
-        label: 'Accept call',
-        color: Colors.green,
-        autoDismissible: true,
-      ),
-      NotificationActionButton(
-        key: 'REJECT',
-        label: 'Reject call',
-        color: Colors.red,
-        autoDismissible: true,
-      ),
-    ],
-  );
-  //AwesomeNotificationSend.createNotification(true);
-}
-
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  AwesomeNotificationSend.notificationInitialize();
-
-  FirebaseMessaging.onBackgroundMessage(backgroundHandler);
-
-
-
-  Messaging.initFCM();
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Flutter Demo",
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
-      ),
-      home: const HomePage(),
-    );
-  }
-}
-*/

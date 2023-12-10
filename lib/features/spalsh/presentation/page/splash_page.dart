@@ -9,7 +9,10 @@ import '../../../../core/constants/app_theme.dart';
 class Splash extends StatelessWidget {
   final dynamic navigator;
 
-  const Splash({Key? key, this.navigator}) : super(key: key);
+  const Splash({
+    Key? key,
+    this.navigator,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,6 @@ class Splash extends StatelessWidget {
       //backgroundColor: AppColors.primaryColor,
       logoWidth: 120,
       logo: Image.asset(
-
         AppAssets.splashLogo,
         //height: 200,
         alignment: Alignment.bottomCenter,
@@ -34,15 +36,17 @@ class Splash extends StatelessWidget {
       // ),
       showLoader: true,
       loaderColor: AppColors.primaryColor,
-      loadingText: Text(AppSettings.appVersion,
-          style: AppTheme.headline6
-              .copyWith(color: AppColors.white, fontWeight: FontWeight.w400)),
+      loadingText: Text(
+        AppSettings.appVersion,
+        style: AppTheme.headline6.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
 //      navigator: navigator,
       futureNavigator: futureCall(context),
     );
   }
-
-
 
   Future<Widget> futureCall(context) async {
     return Future.delayed(const Duration(seconds: 4), () {
